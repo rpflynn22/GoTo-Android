@@ -37,7 +37,10 @@ public class ListGroupsActivity extends Activity {
     }
     
     /** Creates a listview of the groups to which the user is subscribed. */
-    public void listGroups(List<GroupListItem> groups) {
+    public void listGroups(List<GroupListItem> groups, String idIn, String firstNameIn, String lastNameIn) {
+    	final String userId = idIn;
+    	final String firstName = firstNameIn;
+    	final String lastName = lastNameIn;
     	final ListView groupList = (ListView) findViewById(R.id.listOfGroups);
     	final List<GroupListItem> listElements = new ArrayList<GroupListItem>();
     	for (GroupListItem group : groups) {
@@ -63,7 +66,10 @@ public class ListGroupsActivity extends Activity {
     					Intent i = new Intent("com.destination.gotoapp.GroupDetailActivity");
     					Bundle b = new Bundle();
     					b.putString("groupName", groupName);
-    					b.putString("groupName", streamName);
+    					b.putString("streamName", streamName);
+    					b.putString("id", userId);
+    					b.putString("firstName", firstName);
+    					b.putString("lastName", lastName);    					
     					i.putExtras(b);
     			        startActivity(i);
     	            } else if (swipeDetector.getAction() == SwipeDetector.Action.RL) {
@@ -75,7 +81,7 @@ public class ListGroupsActivity extends Activity {
     	        	Toast.makeText(ListGroupsActivity.this,
     	                    "Send that notification", Toast.LENGTH_SHORT).show();
     	        }
-    	    }
+    	    }    	    
     	});
     	
     }
@@ -111,7 +117,7 @@ public class ListGroupsActivity extends Activity {
 	                // TODO give it to zach
 	                // TODO lookup user and put groups
 	                List<GroupListItem> gList = getGroups(id, firstName, lastName);
-	                listGroups(gList);
+	                listGroups(gList, id, firstName, lastName);
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
