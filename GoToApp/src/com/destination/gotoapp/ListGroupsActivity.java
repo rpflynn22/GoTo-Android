@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
@@ -41,6 +42,19 @@ public class ListGroupsActivity extends Activity {
     	final String userId = idIn;
     	final String firstName = firstNameIn;
     	final String lastName = lastNameIn;
+    	final TextView addGroupButton = (TextView) findViewById(R.id.addGroupButton);
+    	addGroupButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent("com.destination.gotoapp.AddGroupActivity");
+				Bundle b = new Bundle();
+				b.putString("userId", userId);
+				b.putString("firstName", firstName);
+				b.putString("lastName", lastName);
+				i.putExtras(b);
+				startActivity(i);
+			}
+    	});
     	final ListView groupList = (ListView) findViewById(R.id.listOfGroups);
     	final List<GroupListItem> listElements = new ArrayList<GroupListItem>();
     	for (GroupListItem group : groups) {

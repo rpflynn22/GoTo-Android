@@ -8,5 +8,8 @@
     <string name="title_activity_group_detail">GroupDetailActivity</string>
     <string name="facebook_app_id">261786324026450</string>
     <string name="title_activity_get_user_facebook">GetUserFacebookActivity</string>
+    <string name="add_group">Add</string>
+    <string name="title_activity_add_group">AddGroupActivity</string>
+    <string name="add_group_title">Add Group</string>
 
 </resources>

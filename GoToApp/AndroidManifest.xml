@@ -43,6 +43,10 @@
             android:name="com.destination.gotoapp.GetUserFacebookActivity"
             android:label="@string/title_activity_get_user_facebook" >
         </activity>
+        <activity
+            android:name="com.destination.gotoapp.AddGroupActivity"
+            android:label="@string/title_activity_add_group" >
+        </activity>
     </application>
 
 </manifest>
