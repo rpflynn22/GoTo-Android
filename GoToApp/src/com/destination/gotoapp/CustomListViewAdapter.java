@@ -64,7 +64,6 @@ public class CustomListViewAdapter extends ArrayAdapter<GroupListItem> {
         	e.printStackTrace();
         	holder.groupImage.setImageDrawable(null);
         }
- 
         return convertView;
     }
     
@@ -83,6 +82,4 @@ public class CustomListViewAdapter extends ArrayAdapter<GroupListItem> {
         	}
         }
     }
-    
-    
 }
