@@ -2,10 +2,10 @@ package com.destination.gotoapp;
 
 public class GroupListItem {
 	/** Constructor for GroupListItem Object. */
-	GroupListItem(String groupNameIn, String recentActivityIn, String imageLocationIn) {
+	GroupListItem(String groupNameIn, String streamNameIn/*, String recentActivityIn*/) {
 		groupName = groupNameIn;
-		recentActivity = recentActivityIn;
-		imageLocation = imageLocationIn;
+		streamName = streamNameIn;
+		//recentActivity = recentActivityIn;
 	}
 
 	/** Getter for groupName. */
@@ -13,21 +13,20 @@ public class GroupListItem {
 		return groupName;
 	}
 	
-	/** Getter for recentActivity. */
-	public String getRecentActivity() {
-		return recentActivity;
+	/** Getter for streamName. */
+	public String getStreamName() {
+		return streamName;
 	}
 	
-	/** Getter for imageLocation. */
-	public String getImageLocation() {
-		return imageLocation;
-	}
+	/** Getter for recentActivity. */
+	/*public String getRecentActivity() {
+		return recentActivity;
+	}*/
 	
 	/** The name of the group */
 	private String groupName;
 	/** The text describing recent activity. */
-	private String recentActivity;
-	/** The http request location as a string. */ // TODO this will need to be changed based on the backend config.
-	private String imageLocation;
-	
+	//private String recentActivity;
+	/** The streamname for pubhub. */
+	private String streamName;
 }

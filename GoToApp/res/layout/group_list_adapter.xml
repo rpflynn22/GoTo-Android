@@ -7,19 +7,11 @@
         android:id="@+id/GroupName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"/>
-    
-    <TextView
-        android:id="@+id/RecentGroupActivity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/GroupName"/>
-    
-    <ImageView
-        android:id="@+id/GroupImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"/>    
+        android:layout_centerInParent="true"
+        android:gravity="center" 
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:textSize="26sp"/>"
+        
 
 </RelativeLayout>
