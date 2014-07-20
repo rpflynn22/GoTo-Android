@@ -38,14 +38,5 @@
         android:layout_below="@id/titleGroupList"
 		android:divider="#111111"
         android:dividerHeight="0.8dp"/>
-    
-    <com.facebook.widget.LoginButton
-        android:id="@+id/authButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
-        android:layout_alignParentBottom="true"
-        />
 
 </RelativeLayout>

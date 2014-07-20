@@ -3,6 +3,9 @@ package com.destination.gotoapp;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -13,15 +16,16 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class ListGroupsActivity extends Activity {
-
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_groups);
-        listGroups();
+        getUserInfo();
     }
 
 
@@ -33,10 +37,9 @@ public class ListGroupsActivity extends Activity {
     }
     
     /** Creates a listview of the groups to which the user is subscribed. */
-    public void listGroups() {
+    public void listGroups(List<GroupListItem> groups) {
     	final ListView groupList = (ListView) findViewById(R.id.listOfGroups);
     	final List<GroupListItem> listElements = new ArrayList<GroupListItem>();
-    	List<GroupListItem> groups = getGroups();
     	for (GroupListItem group : groups) {
     		//String recentActivity = getRecentActivity(group);
     		listElements.add(group/*, recentActivity*/);
@@ -90,22 +93,44 @@ public class ListGroupsActivity extends Activity {
     	alertDialog.show();
     }
     
+    public void getUserInfo() {
+    	Intent i = new Intent(ListGroupsActivity.this, GetUserFacebookActivity.class);
+    	startActivityForResult(i, 1);
+    }
+    
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1) {
+            if(resultCode == RESULT_OK){
+                String result = (String) data.getStringExtra("result");
+                try {
+					JSONObject j = new JSONObject(result);
+					TextView v = (TextView) findViewById(R.id.titleGroupList);
+	                String firstName = j.getString("first_name");
+	                String lastName = j.getString("last_name");
+	                String id = j.getString("id");
+	                // TODO give it to zach
+	                // TODO lookup user and put groups
+	                List<GroupListItem> gList = getGroups(id, firstName, lastName);
+	                listGroups(gList);
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            }
+            if (resultCode == RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
+        }
+    }
     
     /** Get the user's list of groups from the backend. */
     // TODO params should probably include user info
-    public List<GroupListItem> getGroups() {
+    public List<GroupListItem> getGroups(String id, String firstName, String lastName) {
     	// TODO make HTTP request to the backend
     	List<GroupListItem> gList = new ArrayList<GroupListItem>();
     	gList.add(new GroupListItem("Phi Psi", "phipsi_goto"));
     	gList.add(new GroupListItem("Second Floor", "secondfloor_goto"));
     	gList.add(new GroupListItem("Eta", "eta_goto"));
     	return gList;
-    }
-    
-    /** Get group image. */
-    public String getRecentActivity(String groupName) {
-    	// TODO get recent activity from wherever
-    	return "recent activity";
-    }
-    
+    }    
 }
